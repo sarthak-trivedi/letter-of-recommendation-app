@@ -1,0 +1,1 @@
+This project is created for DAIICT to get list of students who want to go out for further study. This project is used by students who want to request letter of recommedation to the professor
