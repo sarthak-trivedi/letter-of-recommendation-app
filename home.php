@@ -22,7 +22,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
     if(empty($name) || empty($uni_name) || empty($dep_name) || empty($prof_email[0])){
       $msg = "<font color='red'>All fields are required</font>"; 
     }else{
-      $header = "From: Sarthak Trivedi <sarthak.sk8485@gmail.com>\r\n";
+      $header = "From: Letter Of Recommendation - DAIICT <daiict-lor@dletter-daiict.com>\r\n";
       $header .= "Content-Type: text/html\r\n";
       
       foreach($prof_email as $email){
@@ -41,7 +41,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
         
         $mail = explode("<", $email);
         $mail = substr($mail[1], 0, strlen($mail[1])-1 );
-        mail($mail, "Reminder on Application for letter of recommendation", $body, $header);
+        mail($mail, "Request on Application for letter of recommendation from ".chop($_SESSION['email'], '@daiict.ac.in'), $body, $header);
       }
      
       $msg = "<font color='green'>Succesfully sent</font>";
@@ -65,7 +65,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hello</title>
+    <title>Letter of recommendation | DAIICT</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -140,10 +140,10 @@ ini_set('max_execution_time', 0); // for infinite time of execution
             <form class="form-signin" id="frm" method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                 <center><?php echo $msg; ?></center>
                 
-                <button class="btnplus" id="btnpls">
+                <button class="btnplus" id="btnpls" type="button">
                     <img class="plus" src="plus.svg" height="50px" width="50px">
                   </button>
-                  <button class="btnminus" id="btnmin">
+                  <button class="btnminus" id="btnmin" type="button">
                       <img class="minus" src="minus.svg" height="50px" width="50px">
                     </button> Add/Remove faculties
               <div class="form-label-group" id="flg">
