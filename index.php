@@ -39,7 +39,7 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="btn-danger btn-lg" onclick="window.location = '<?php echo $loginURL ?>';">
-							Login in with G-Suit
+							Login in with G-Suite
 						</button>
 					</div>
 

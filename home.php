@@ -22,7 +22,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
     if(empty($name) || empty($uni_name) || empty($dep_name) || empty($prof_email[0])){
       $msg = "<font color='red'>All fields are required</font>"; 
     }else{
-      $header = "From: Sarthak Trivedi <sarthak.sk8485@gmail.com>\r\n";
+      $header = "From: LOR - DAIICT <no-reply@daiict.ac.in>\r\n";
       $header .= "Content-Type: text/html\r\n";
       
       foreach($prof_email as $email){
@@ -65,7 +65,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hello</title>
+    <title>Letter Of Recommendation | Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -80,9 +80,9 @@ ini_set('max_execution_time', 0); // for infinite time of execution
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
       <style rel="stylesheet" type="text/css">
-.icon-bar{
-  background-color:white !important;
-}
+        .icon-bar{
+          background-color:white !important;
+        }
 </style>
 <script>
   $(document).ready(function(){
@@ -97,14 +97,22 @@ ini_set('max_execution_time', 0); // for infinite time of execution
       $('#details').children().last().remove();
     });
     
-    $("#inputProf").bind("keydown.autocomplete", PlanAutoComplete);
+    $("#inputProf").bind("keydown.autocomplete", PlanAutoCompleteprof);
+    $("#inputUni").bind("keydown.autocomplete", PlanAutoCompleteuni);
   });
 
-  $(document).on('keydown', '#inputProf:not(.autocompleted)', PlanAutoComplete);
-
-  function PlanAutoComplete() {
+  $(document).on('keydown', '#inputProf:not(.autocompleted)', PlanAutoCompleteprof);
+  $(document).on('keydown', '#inputUni:not(.autocompleted)', PlanAutoCompleteuni);
+  
+  
+  function PlanAutoCompleteprof() {
       $(this).addClass("autocompleted").autocomplete({
-          source: 'autocomplete.php',
+          source: 'autocompleteprof.php',
+      });
+  }
+  function PlanAutoCompleteuni() {
+      $(this).addClass("autocompleted").autocomplete({
+          source: 'autocompleteuni.php',
       });
   }
     </script>
@@ -122,7 +130,7 @@ ini_set('max_execution_time', 0); // for infinite time of execution
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <a class="navbar-brand" href="#" style="color:white;"><?php echo chop($_SESSION["email"],"@daiict.ac.in"); ?></a>
+          <em class="navbar-brand">Welcome, <a href="#" style="color:white;"><strong><u><?php echo chop($_SESSION["email"],"@daiict.ac.in"); ?></u></strong></a></em>
         </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -134,25 +142,28 @@ ini_set('max_execution_time', 0); // for infinite time of execution
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
         <div class="card card-signin my-5">
+          <div class="card-header text-center md-0 py-0" style="background:#F5f5f5; border-radius: 10px 10px 0 0;">
+              <h3 class="mb-0" style="font-size:25px; color:black;">Request for<br><strong>Letter Of Recommendation</strong></h3><br>
+          </div>
           <div class="card-body">
             <form class="form-signin" id="frm" method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                 <center><?php echo $msg; ?></center>
                 
-                <button class="btnplus" id="btnpls">
+                <button class="btnplus" id="btnpls" type="button">
                     <img class="plus" src="plus.svg" height="50px" width="50px">
                   </button>
-                  <button class="btnminus" id="btnmin">
+                  <button class="btnminus" id="btnmin" type="button">
                       <img class="minus" src="minus.svg" height="50px" width="50px">
-                    </button> Add/Remove faculties
+                    </button> <font style="font-size:18px; color:black;">Add/Remove Faculty</font>
               <div class="form-label-group" id="flg">
                 <input name="name" type="text" id="inputName" class="form-control" placeholder="Your name" required autofocus value="<?php if(isset($name)){echo $name;} ?>">
               </div>
 
               <div class="form-label-group" id="flg">
-                <input name="uni_name" type="text" id="inputUni" class="form-control" placeholder="University's name" required autofocus value="<?php if(isset($uni_name)){echo $uni_name;} ?>">
-                <input name="dep_name" type="text" id="inputDep" class="form-control" placeholder="Department's name" required autofocus value="<?php if(isset($dep_name)){echo $dep_name;} ?>">
+                <input name="uni_name" type="text" id="inputUni" class="form-control" placeholder="University's name(For Example: DAIICT)" required autofocus value="<?php if(isset($uni_name)){echo $uni_name;} ?>">
+                <input name="dep_name" type="text" id="inputDep" class="form-control" placeholder="Department's name(For Example: CS)" required autofocus value="<?php if(isset($dep_name)){echo $dep_name;} ?>">
                 
                 <input name="prof_email[]" type="text" id="inputProf" class="form-control" placeholder="Professor's name" required autofocus>  
                 <div id="details">

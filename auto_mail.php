@@ -1,7 +1,7 @@
 <?php
 require_once "config_db.php";
 ini_set('max_execution_time', 0); // for infinite time of execution
-$header = "From: Sarthak Trivedi <sarthak.sk8485@gmail.com>\r\n";
+$header = "From: LOR - DAIICT <no-reply@daiict.ac.in>\r\n";
 $header .= "Content-Type: text/html\r\n";
 $time = (int)(time())-(36*60*60);
 $query = "SELECT * FROM `applied_student` WHERE (`last_notified` IS NULL OR `last_notified` <= ". $time .") AND (`status` = 'accepted') AND (`created` = 0)";

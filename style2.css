@@ -18,12 +18,6 @@
   #submitbtn{
     margin-bottom: 2rem;
   }
-  /* .card-body{
-    background: #495057;
-  } */
-  .plus:hover{
-    background: orangered;
-  } 
   .card-signin {
     border: 0;
     border-radius: 1rem;
